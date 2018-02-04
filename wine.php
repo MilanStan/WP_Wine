@@ -161,9 +161,11 @@ add_filter( 'image_send_to_editor', 'remove_image_size_attributes' );
 
 Include OWL carousel neccessary for slider on product page*/
 function include_owl(){
-    wp_enqueue_style('owl-carousel','https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/assets/owl.carousel.min.css)',null,null,'all');
-    wp_enqueue_style('owl-theme','https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/assets/owl.theme.default.min.css', null, null,'all');
-    wp_enqueue_script('owl-carousel', 'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.min.js', array('jquery'), null, true);
-    wp_enqueue_script('owl-init',get_stylesheet_directory_uri().'/js/owl-init.js',array('owl-carousel'),null,true);
+        if(is_singular('product')){
+        wp_enqueue_style('owl-carousel','https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/assets/owl.carousel.min.css)',null,null,'all');
+        wp_enqueue_style('owl-theme','https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/assets/owl.theme.default.min.css', null, null,'all');
+        wp_enqueue_script('owl-carousel', 'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.min.js', array('jquery'), null, true);
+        wp_enqueue_script('owl-init',get_stylesheet_directory_uri().'/js/owl-init.js',array('owl-carousel'),null,true);
+    }
 }
 add_action('wp_enqueue_scripts', 'include_owl');
